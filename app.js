@@ -14,7 +14,7 @@ const logger =(req,res,next) => {
 
 app.use(express.urlencoded({ extended: false }));
 let options = {
-  origin: "http://localhost:3000",
+  origin: "http://localhost:3001",
   credentials: true,
 };
 
