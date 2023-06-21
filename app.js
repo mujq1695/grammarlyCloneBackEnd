@@ -14,7 +14,7 @@ const logger = (req, res, next) => {
 
 app.use(express.urlencoded({ extended: false }));
 let options = {
-  origin: "https://writeophonic.netlify.app/",
+  origin: "https://writeophonic.netlify.app",
   
   credentials: true,
 };
