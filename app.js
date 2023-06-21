@@ -28,8 +28,8 @@ app.use(content);
 
 database()
   .then(() => {
-    app.listen(4000, host, () => {
-      console.log(`listening at port 4000, host ${host}`);
+    app.listen(4000, () => {
+      console.log(`listening at port 4000, host`);
     });
   })
   .catch((err) => console.log(err));
