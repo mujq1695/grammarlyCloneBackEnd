@@ -7,18 +7,35 @@ const database = require("./config/database");
 const { host } = require("./config/config");
 const app = express();
 
-const logger =(req,res,next) => {
-  console.log(`Logged || req.method = ${req.method} || req.url = ${req.url} `)
+const logger = (req, res, next) => {
+  console.log(`Logged || req.method = ${req.method} || req.url = ${req.url} `);
   next();
-}
+};
 
 app.use(express.urlencoded({ extended: false }));
 let options = {
-  origin: "*",
+  origin: "https://writeophonic.netlify.app/",
   credentials: true,
 };
 
 app.use(cors(options));
+
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Methods",
+//     "GET, HEAD, OPTIONS, POST, PUT, DELETE"
+//   );
+
+//   res.header(
+//     "Access-Control-Allow-Headers",
+
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+
+//   next();
+// });
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(logger);
