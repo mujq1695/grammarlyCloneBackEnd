@@ -9,7 +9,7 @@ exports.loginUser = async (req, res) => {
     const user = req.body;
     const foundUser = await User.findOne({ email: user.email });
     if (!foundUser) {
-      res.status(404).send( "Invalid Credntials");
+      res.status(404).send("Invalid Credntials");
       return;
     }
 
@@ -23,8 +23,12 @@ exports.loginUser = async (req, res) => {
       expiresIn: "3600s",
     });
     res
-      
-      .cookie('access_token', token)
+
+      .cookie("access_token", token, {
+        httpOnly: true,
+        sameSite: "none",
+        secure: "false",
+      })
       .status(200)
       .send({ message: "Logged in successfully 😊 👌" });
   } catch (err) {
@@ -34,11 +38,11 @@ exports.loginUser = async (req, res) => {
 
 exports.signupUser = async (req, res) => {
   try {
-const {name,email,password} = req.body;
+    const { name, email, password } = req.body;
 
-    if(!name||!email||!password){
-res.status(401).send("Please enter all required fields")
-return;
+    if (!name || !email || !password) {
+      res.status(401).send("Please enter all required fields");
+      return;
     }
 
     const usersData = req.body;
